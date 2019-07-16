@@ -1,33 +1,92 @@
-.App {
+:root {
+  --primaryColor: steelblue;
+  --mainGreen: #6b9023;
+  --mainWhite: #eee;
+  --bgColor: #282c34;
+  --tileColor: #9e9e9e;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 32px 0;
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bgColor);
+  color: #eee;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 95%;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.intro {
+  line-height: 1.6;
+}
+
+.tile {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.tile::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.tile:hover::after {
+  background-color: rgba(0, 204, 204, 0.4);
+}
+
+.btn {
+  text-decoration: none;
+  color: var(--mainWhite);
+  background-color: var(--mainGreen);
+  text-align: center;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  outline: 0;
+  border: none;
+  border-radius: 2px;
+  display: block;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn:hover {
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-play {
+  font-size: 32px;
 }
