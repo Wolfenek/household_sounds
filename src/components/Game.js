@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TileList from "./TileList";
+import Alert from "./Alert";
 import sound1 from "../sounds/1.mp3";
 import sound2 from "../sounds/2.mp3";
 import sound3 from "../sounds/3.mp3";
@@ -55,38 +56,46 @@ const Game = () => {
   const [tileId, setTileId] = useState("");
   const [score, setScore] = useState(0);
   const [clickedNumber, setClickedNumber] = useState(0);
+  // Alert
+  const [alert, setAlert] = useState({ display: false });
+
+  const handleAlert = ({ type, text }) => {
+    setAlert({ display: true, type, text });
+    setTimeout(() => {
+      setAlert({ display: false });
+    }, 3000);
+  };
 
   useEffect(() => {
-    
+    const newRound = async () => {
+      const sound = dopeSounds[playing].dopeSound;
+      const audio = await new Audio(sound);
       setPlaying((playing + 1) % dopeSounds.length);
-      console.log(dopeSounds[playing].id);
-      setSoundId(dopeSounds[playing].id)
+      setSoundId(dopeSounds[playing].id);
       audio.play();
       if (tileId === soundId) {
-        console.log("success");
         setScore(score + 1);
-      } else {
-        console.log("nope");
+        handleAlert({type: "correct", text: "Good job!"})
       }
-  }, [clickedNumber])
-
-
-  const sound = dopeSounds[playing].dopeSound;
-  const audio = new Audio(sound);
+    };
+    newRound();
+  }, [clickedNumber]);
 
   const getTileId = id => {
     setTileId(id);
-    setClickedNumber(clickedNumber +1);
+    setClickedNumber(clickedNumber + 1);
   };
 
+ 
+
   return (
-    <>
-      <button
+    <div className="Game">
+      {/* <button
         className="btn btn-play"
         aria-label="start-button"
       >
         Play
-      </button>
+      </button> */}
       <TileList ourTiles={ourTiles} getTileId={getTileId} />
       <br />
       <br />
@@ -94,11 +103,13 @@ const Game = () => {
       sound: {soundId}
       <br />
       tile: {tileId}
-      <div>You got {score} right!</div>
+      <div className="score">You got {score} right!</div>
       <br />
       <br />
       {clickedNumber}
-    </>
+      {alert.display && <Alert type={alert.type} text={alert.text} />}
+      <Alert type={"correct"} text={"dude"} />
+    </div>
   );
 };
 
