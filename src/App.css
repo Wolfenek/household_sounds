@@ -28,6 +28,9 @@ body {
   margin: 0 auto;
   max-width: 1200px;
   width: 95%;
+}
+
+.flex-container {
   display: flex;
   flex-wrap: wrap;
 }
