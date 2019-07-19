@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useState } from "react";
 import shuffle from "lodash/shuffle";
 import TileList from "./TileList";
 import Alert from "./Alert";
@@ -67,9 +66,9 @@ const Game = () => {
 
   const handleAlert = ({ type, text }) => {
     setAlert({ display: true, type, text });
-    setTimeout(() => {
-      setAlert({ display: false });
-    }, 3000);
+    // setTimeout(() => {
+    //   setAlert({ display: false });
+    // }, 3000);
   };
 
   const getTileId = event => {
@@ -88,29 +87,31 @@ const Game = () => {
 
   return (
     <div className="Game">
-      <h2>What item makes that sound? Listen and choose!</h2>
+      <div className="call-to-action">
+        <h2>What item makes that sound? Listen carefully and choose!</h2>
+        {alert.display && <Alert type={alert.type} text={alert.text} />}
+      </div>
       {canAnswer ? (
-        <h1>dupa</h1>
+        <h1>':-)'</h1>
       ) : (
         <button
           className="btn btn-play"
           aria-label="start-button"
           onClick={play}
         >
-          Start
+          {track < 1 ? "Start" : "Next"}
         </button>
       )}
-
-      <TileList ourTiles={ourTiles} getTileId={getTileId} canAnswer={canAnswer} />
+      <TileList
+        ourTiles={ourTiles}
+        getTileId={getTileId}
+        canAnswer={canAnswer}
+      />
       <br />
       <br />
       <div className="score">Correct answers so far: {score}</div>
       <br />
       <br />
-      {/* <div className="btn" onClick={() => audio.play()}>
-        <audio src={audio} />
-      </div> */}
-      {alert.display && <Alert type={alert.type} text={alert.text} />}
     </div>
   );
 };

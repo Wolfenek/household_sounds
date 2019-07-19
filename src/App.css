@@ -2,7 +2,7 @@
   --primaryColor: steelblue;
   --mainGreen: #6b9023;
   --secondaryGreen: #7ba428;
-  --mainOrange: #ffbb33;
+  --mainOrange: #ff8800;
   --mainWhite: #eee;
   --bgColor: #282c34;
   --scoreColor: steelblue;
@@ -103,20 +103,30 @@ body {
 }
 
 .score {
-  font-size: 32px;
+  font-size: 26px;
   padding: 16px 22px;
   border-radius: 8px;
   background-color: var(--scoreColor);
 }
 
+.call-to-action {
+  position: relative;
+}
+
 .alert {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: -100px;
   padding: 0.75rem 1.25rem;
   color: var(--mainWhite);
   text-align: center;
   text-transform: capitalize;
-  width: 90%;
+  font-size: 20px;
+  font-weight: 700;
+  width: 250px;
   margin: 2rem auto 0 auto;
-  border-radius: 2px;
+  border-radius: 16px;
   text-transform: capitalize;
 }
 .alert-correct {
