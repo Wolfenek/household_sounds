@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import shuffle from "lodash/shuffle";
 import TileList from "./TileList";
 import Alert from "./Alert";
@@ -84,6 +85,12 @@ const Game = () => {
   };
 
   console.log(soundId);
+
+  // if (track === 0 && canAnswer === true) {
+  //   return <Redirect to="/final" />;
+  // }
+
+  console.log("the lenght is: ", dopeSounds.length);
 
   return (
     <div className="Game">
