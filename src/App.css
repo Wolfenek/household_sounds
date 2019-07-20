@@ -1,12 +1,14 @@
 :root {
-  --primaryColor: steelblue;
+  --bgColor: #f5f5f5;
+  --mainBlue: #00b4cc;
   --mainGreen: #6b9023;
-  --secondaryGreen: #7ba428;
+  --secondaryGreen: #4d6719;
   --mainOrange: #ff8800;
-  --mainWhite: #eee;
-  --bgColor: #282c34;
-  --scoreColor: steelblue;
+  --mainWhite: #fff;
+  --mainDark: rgba(0, 0, 0, 0.87);
 }
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=latin-ext');
 
 * {
   margin: 0;
@@ -15,24 +17,23 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bgColor);
-  color: var(--mainWhite);
+  color: var(--mainDark);
   text-align: center;
 }
 
 .App {
-  margin: 0 auto;
-  max-width: 1200px;
+  margin: auto;
   width: 95%;
+  max-width: 1200px;
+  height: 100%;
 }
 
 .Home {
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,16 +87,15 @@ body {
   background-color: var(--mainGreen);
   letter-spacing: 3px;
   font-size: 28px;
-  width: 140px;
+  /* width: 140px; */
   outline: 0;
+  border: none;
   border-radius: 8px;
   display: block;
-  padding: 6px 0;
-  text-transform: uppercase;
+  padding: 6px 16px;
   margin: 16px auto;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background-color: var(--mainGreen);
 }
 
 .btn:hover {
@@ -103,14 +103,22 @@ body {
 }
 
 .score {
-  font-size: 26px;
-  padding: 16px 22px;
+  font-size: 28px;
+  color: var(--mainWhite);
+  padding: 6px 16px;
+  margin: 16px auto;
   border-radius: 8px;
-  background-color: var(--scoreColor);
+  background-color: var(--mainBlue);
 }
 
 .call-to-action {
   position: relative;
+}
+
+.emoji {
+  /* height: auto;
+  width: 50px; */
+  font-size: 64px;
 }
 
 .alert {
