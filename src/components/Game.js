@@ -1,22 +1,28 @@
 import React, { useState } from "react";
-import { Redirect, NavLink } from "react-router-dom";
+// Lodash shuffle function
+import shuffle from "lodash/shuffle";
+// Data
+import { GameSounds, GameTiles } from "../data/HouseholdGame";
+// Components
+import CallToAction from "./CallToAction";
 import TileList from "./TileList";
-import { GameSounds } from "../data/HouseholdGame";
+import Results from "./Results";
 
 const Game = () => {
   // State Hooks
+  const [sounds, setSounds] = useState(shuffle(GameSounds));
+  const [tiles, setTiles] = useState(shuffle(GameTiles));
   const [track, setTrack] = useState(0);
   const [score, setScore] = useState(0);
   const [canAnswer, setCanAnswer] = useState(false);
   const [showEmoji, setShowEmoji] = useState({ show: false });
   const [stillPlaying, setStillPlaying] = useState(true);
-  // Variables holding crucial information
-  const sound = GameSounds[track].dopeSound;
-  const soundId = GameSounds[track].id;
+  // Variables holding data information
+  const sound = sounds[track].dopeSound;
+  const soundId = sounds[track].id;
   const numberOfSounds = GameSounds.length;
 
-  console.log(numberOfSounds);
-
+  // Display emoji
   const handleEmoji = ({ emoji, feedbackText }) => {
     setShowEmoji({ show: true, emoji, feedbackText });
     // setTimeout(() => {
@@ -57,47 +63,48 @@ const Game = () => {
     playButtonText = "Next";
   }
 
-  // Show results
-  // const showResults = () => {
-  //   if (track + 1 === numberOfSounds && canAnswer) console.log("done");
-  // };
-
-  // showResults();
+  // Start over
+  const startOver = () => {
+    setSounds(shuffle(GameSounds));
+    setTiles(shuffle(GameTiles));
+    setTrack(0);
+    setScore(0);
+    setShowEmoji({ show: false });
+    setStillPlaying(true);
+  };
 
   return (
     <div className="Game">
       {track}
       {stillPlaying ? (
         <>
-        <h2>What item makes that sound? Listen carefully and choose!</h2>
-        <button className="btn" aria-label="start-button" onClick={play}>
-          {playButtonText}
-        </button>
-        <TileList getTileId={getTileId} canAnswer={canAnswer} />
-        <div className="emoji">
-          {showEmoji && (
-            <>
-              <span role="img" aria-label="emoji">
-                {showEmoji.emoji}
-              </span>
-              <p>{showEmoji.feedbackText}</p>
-            </>
-          )}
-        </div>
+          <CallToAction play={play} playButtonText={playButtonText} />
+          <TileList tiles={tiles} getTileId={getTileId} canAnswer={canAnswer} />
         </>
       ) : (
-      <Redirect to='/results' />
+        <Results
+          score={score}
+          numberOfSounds={numberOfSounds}
+          startOver={startOver}
+        />
       )}
-      
-      
-      <div className="score">
-        <p>
-          Question {track + 1} out of {numberOfSounds}
-        </p>
+      <div className="emoji">
+        {showEmoji && (
+          <>
+            <span role="img" aria-label="emoji">
+              {showEmoji.emoji}
+            </span>
+            <p>{showEmoji.feedbackText}</p>
+          </>
+        )}
       </div>
-      <NavLink to="/" className="btn">
-          Play again
-        </NavLink>
+      {stillPlaying && (
+        <div className="score">
+          <p>
+            Question {track + 1} / {numberOfSounds}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

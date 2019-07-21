@@ -27,7 +27,7 @@ export const GameSounds = shuffle([
 ]);
 
 // Image data
-export const GameTiles = shuffle([
+export const GameTiles = [
   {
     id: "cat1",
     picture: "http://lorempixel.com/150/150/cats/",
@@ -48,4 +48,4 @@ export const GameTiles = shuffle([
     picture: "http://lorempixel.com/150/150/people/",
     alt: "pic4"
   }
-]);
+];

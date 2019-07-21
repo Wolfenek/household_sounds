@@ -1,18 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
-const Results = ({ score }) => {
+const Results = ({ score, numberOfSounds, startOver }) => {
   return (
-    <div>
+    <>
       <h2>
-        You got {score} {score === 1 ? "answer" : "answers"} right!
+        You got {score} {score === 1 ? "answer" : "answers"} out of {numberOfSounds} right!
       </h2>
-      <button className="btn" aria-label="play-again-button">
-        <NavLink to="/" className="btn">
-          Play again
-        </NavLink>
+      <button className="btn" aria-label="play-again-button" onClick={startOver}>
+        Play again
       </button>
-    </div>
+    </>
   );
 };
 
