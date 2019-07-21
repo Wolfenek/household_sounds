@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/Home";
+import Results from "./components/Results";
 import Game from "./components/Game";
 import Final from "./components/Final"
 import Error from "./components/Error";
@@ -11,9 +11,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/game" component={Game} />
-          <Route path="/final" component={Final} />
+          <Route exact path="/" component={Game} />
+          {/* <Route path="/game" component={Game} /> */}
+          <Route path="/results" component={Results} />
           <Route component={Error} />
         </Switch>
       </Router>
