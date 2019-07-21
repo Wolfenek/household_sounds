@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Results from "./components/Results";
 import Game from "./components/Game";
-import Final from "./components/Final"
 import Error from "./components/Error";
 import "./App.css";
 

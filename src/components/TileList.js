@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import shuffle from "lodash/shuffle";
-// import { GameTiles } from "../data/HouseholdGame";
+import React from "react";
 
 // Child component
 const Tile = ({ tile: { picture, alt, id }, getTileId, canAnswer }) => {
@@ -14,8 +12,6 @@ const Tile = ({ tile: { picture, alt, id }, getTileId, canAnswer }) => {
 
 // Parent component
 const TileList = ({ tiles, getTileId, canAnswer }) => {
-  // const [tiles, setTiles] = useState(shuffle(GameTiles));
-
   return (
     <div className="tile-container">
       {tiles.map(tile => {
