@@ -27,8 +27,8 @@ body {
 
 .App {
   margin: auto;
-  width: 95%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 800px;
   height: 100%;
 }
 
@@ -46,6 +46,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 2px solid black;
 }
 
 .tile-container {
@@ -81,6 +82,15 @@ body {
   background-color: rgba(0, 204, 204, 0.4);
 }
 
+/* .progress {
+  display: flex;
+  padding: 6px 16px;
+  border: 2px solid black;
+  border-radius: 16px;
+  justify-content: space-between;
+  width: 100%;
+} */
+
 .btn {
   text-decoration: none;
   color: var(--mainWhite);
@@ -111,14 +121,20 @@ body {
   background-color: var(--mainBlue);
 }
 
-.call-to-action {
-  position: relative;
+.emoji {
+  display: flex;
+  height: 85px;
+  margin: 16px 0;
 }
 
-.emoji {
-  /* height: auto;
-  width: 50px; */
+.emoji span {
   font-size: 64px;
+}
+
+.emoji p {
+  line-height: 3;
+  font-size: 32px;
+  font-style: italic;
 }
 
 .alert {
