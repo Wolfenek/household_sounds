@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Lodash shuffle function
 import shuffle from "lodash/shuffle";
 // Data
@@ -6,6 +6,7 @@ import { GameSounds, GameTiles } from "../data/HouseholdGame";
 // Components
 import CallToAction from "./CallToAction";
 import TileList from "./TileList";
+import Emoji from "./Emoji";
 import Results from "./Results";
 
 const Game = () => {
@@ -73,8 +74,13 @@ const Game = () => {
     setStillPlaying(true);
   };
 
+  useEffect(() => {
+    const game = document.getElementById("Game");
+    game.classList.remove("Game-hidden");
+  }, []);
+
   return (
-    <div className="Game">
+    <div id="Game" className="Game-hidden">
       {track}
       {stillPlaying ? (
         <>
@@ -88,15 +94,8 @@ const Game = () => {
           startOver={startOver}
         />
       )}
-      <div className="emoji">
-        {showEmoji && (
-          <>
-            <span role="img" aria-label="emoji">
-              {showEmoji.emoji}
-            </span>
-            <p>{showEmoji.feedbackText}</p>
-          </>
-        )}
+      <div className="emoji-container">
+        {showEmoji && <Emoji showEmoji={showEmoji} />}
       </div>
       {stillPlaying && (
         <div className="score">

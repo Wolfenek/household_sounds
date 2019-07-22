@@ -33,20 +33,25 @@ body {
 }
 
 .Home {
-  /* height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 3px solid white; */
 }
 
-.Game {
+#Game {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 2px solid black;
+  background-color: var(--mainWhite);
+  transition: opacity 0.6s ease-in-out;
+}
+
+.Game-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .tile-container {
@@ -121,17 +126,17 @@ body {
   background-color: var(--mainBlue);
 }
 
-.emoji {
+.emoji-container {
   display: flex;
   height: 85px;
   margin: 16px 0;
 }
 
-.emoji span {
+.emoji-container span {
   font-size: 64px;
 }
 
-.emoji p {
+.emoji-container p {
   line-height: 3;
   font-size: 32px;
   font-style: italic;
