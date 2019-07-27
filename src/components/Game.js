@@ -14,7 +14,6 @@ const Game = () => {
   const [tiles, setTiles] = useState(shuffle(GameTiles));
   const [track, setTrack] = useState(0);
   const [score, setScore] = useState(0);
-  const [audio, setAudio] = useState(null);
   const [canAnswer, setCanAnswer] = useState(false);
   const [showEmoji, setShowEmoji] = useState({});
   const [showPlayButton, setShowPlayButton] = useState(true);
@@ -22,12 +21,6 @@ const Game = () => {
   // Variables holding data information
   const sound = sounds[track].gameSound;
   const soundId = sounds[track].id;
-  // const dupa = async () => {
-  //   const dupio = await new Audio(sound);
-  //   console.log(dupio);
-  //   return dupio;
-  // }
-  // dupa();
   const numberOfSounds = GameSounds.length;
   console.log(tiles);
 
@@ -39,16 +32,10 @@ const Game = () => {
   const play = async () => {
     setCanAnswer(true);
     handleEmoji({ emoji: "🤔", feedbackText: "Hmm..." });
-    audio.play();
+    // const audio = await new Audio(sound);
+    // audio.currentTime = 0;
+    // audio.play();
   };
-
-  useEffect(() => {
-    const createSound = async () => {
-      const music = await new Audio(sound);
-      setAudio(music);
-    }
-    createSound();
-  }, [sound])
 
   // Check result of click
   const getTileId = event => {
@@ -107,9 +94,11 @@ const Game = () => {
             What instrumennt does it sound like? Listen carefully and choose!
           </h2>
           {showPlayButton ? (
-            <button className="btn" aria-label="start-button" onClick={play}>
-              {playButtonText}
-            </button>
+              <audio src={sound} controls controlsList="nodownload" onPlay={play}/>
+            // <button className="btn" aria-label="start-button" onClick={play}>
+            //   {playButtonText}
+            
+            // </button>
           ) : (
             <button
               className="btn btn-results"
