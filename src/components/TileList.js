@@ -1,11 +1,13 @@
 import React from "react";
 
 // Child component
-const Tile = ({ tile: { picture, alt, id }, getTileId, canAnswer }) => {
+const Tile = ({ tile, getTileId, canAnswer }) => {
   return (
-    <div className="tile" id={id} onClick={canAnswer ? getTileId : null}>
-      {id}
-      <img src={picture} alt={alt} />
+    <div className="tile" id={tile} 
+    onClick={canAnswer ? getTileId : null}
+    // onClick={getTileId}
+    >
+      <p>{tile}</p>
     </div>
   );
 };
@@ -17,7 +19,7 @@ const TileList = ({ tiles, getTileId, canAnswer }) => {
       {tiles.map(tile => {
         return (
           <Tile
-            key={tile.id}
+            key={tile}
             tile={tile}
             getTileId={getTileId}
             canAnswer={canAnswer}

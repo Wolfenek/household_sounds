@@ -1,13 +1,13 @@
 import React from "react";
 
-const Emoji = ({showEmoji}) => {
+const Emoji = ({ showEmoji }) => {
   return (
-    <>
-      <span role="img" aria-label="emoji" className="emoji">
+    <div className="emoji-content">
+      <span role="img" aria-label="emoji">
         {showEmoji.emoji}
       </span>
       <p>{showEmoji.feedbackText}</p>
-    </>
+    </div>
   );
 };
 

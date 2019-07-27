@@ -1,51 +1,84 @@
 // Lodash
 import shuffle from "lodash/shuffle";
 // Mp.3 sounds
-import sound1 from "../sounds/1.mp3";
-import sound2 from "../sounds/2.mp3";
-import sound3 from "../sounds/3.mp3";
-import sound4 from "../sounds/4.mp3";
+import acoustic_guitar from "../sounds/acoustic_guitar.mp3";
+import bass_guitar from "../sounds/bass_guitar.mp3";
+import clarinet from "../sounds/clarinet.mp3";
+import double_bass from "../sounds/double_bass.mp3";
+import electric_guitar_clean from "../sounds/electric_guitar_clean.mp3";
+import electric_guitar_overdrive from "../sounds/electric_guitar_overdrive.mp3";
+import harmonica from "../sounds/harmonica.mp3";
+import harp from "../sounds/harp.mp3";
+import piano from "../sounds/piano.mp3";
+import tenor_saxophone from "../sounds/tenor_saxophone.mp3";
+import trumpet from "../sounds/trumpet.mp3";
+import violin from "../sounds/violin.mp3";
 
 // Sound data
-export const GameSounds = shuffle([
+export const GameSounds = [
   {
-    id: "cat1",
-    dopeSound: sound1
+    id: "acoustic guitar",
+    gameSound: acoustic_guitar
   },
   {
-    id: "cat2",
-    dopeSound: sound2
+    id: "bass guitar",
+    gameSound: bass_guitar
   },
   {
-    id: "cat3",
-    dopeSound: sound3
+    id: "clarinet",
+    gameSound: clarinet
   },
   {
-    id: "cat4",
-    dopeSound: sound4
+    id: "double bass",
+    gameSound: double_bass
+  },
+  {
+    id: "electric guitar (clean)",
+    gameSound: electric_guitar_clean
+  },
+  {
+    id: "electric guitar (overdrive)",
+    gameSound: electric_guitar_overdrive
+  },
+  {
+    id: "harmonica",
+    gameSound: harmonica
+  },
+  {
+    id: "harp",
+    gameSound: harp
+  },
+  {
+    id: "piano",
+    gameSound: piano
+  },
+  {
+    id: "tenor saxophone",
+    gameSound: tenor_saxophone
+  },
+  {
+    id: "trumpet",
+    gameSound: trumpet
+  },
+  {
+    id: "violin",
+    gameSound: violin
   }
-]);
+];
 
-// Image data
+// export const GameTiles = GameSounds.map(obj => obj.id);
+// console.log(GameTiles);
 export const GameTiles = [
-  {
-    id: "cat1",
-    picture: "http://lorempixel.com/150/150/cats/",
-    alt: "pic1"
-  },
-  {
-    id: "cat2",
-    picture: "http://lorempixel.com/150/150/sports/",
-    alt: "pic2"
-  },
-  {
-    id: "cat3",
-    picture: "http://lorempixel.com/150/150/nature/",
-    alt: "pic3"
-  },
-  {
-    id: "cat4",
-    picture: "http://lorempixel.com/150/150/people/",
-    alt: "pic4"
-  }
+  "acoustic guitar",
+  "bass guitar",
+  "clarinet",
+  "double bass",
+  "electric guitar (clean)",
+  "electric guitar (overdrive)",
+  "harmonica",
+  "harp",
+  "piano",
+  "tenor saxophone",
+  "trumpet",
+  "violin"
 ];
