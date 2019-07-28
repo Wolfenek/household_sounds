@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // Lodash shuffle function
 import shuffle from "lodash/shuffle";
 // Data
-import { GameSounds, GameTiles } from "../data/HouseholdGame";
+import { GameSounds, GameTiles } from "../data/InstrumentsGame";
 // Components
 import TileList from "./TileList";
 import Emoji from "./Emoji";
@@ -15,15 +15,14 @@ const Game = () => {
   const [track, setTrack] = useState(0);
   const [score, setScore] = useState(0);
   const [canAnswer, setCanAnswer] = useState(false);
-  const [showEmoji, setShowEmoji] = useState({});
-  const [showPlayButton, setShowPlayButton] = useState(true);
+  const [showEmoji, setShowEmoji] = useState({ show: false });
+  const [showAudioControls, setShowAudioControls] = useState(true);
   const [gameRunning, setGameRunning] = useState(true);
   // Variables holding data information
   const sound = sounds[track].gameSound;
   const soundId = sounds[track].id;
   const numberOfSounds = GameSounds.length;
-  console.log(tiles);
-
+  
   // Display emoji
   const handleEmoji = ({ emoji, feedbackText }) => {
     setShowEmoji({ emoji, feedbackText });
@@ -31,36 +30,22 @@ const Game = () => {
   // Produce new sounds
   const play = async () => {
     setCanAnswer(true);
-    handleEmoji({ emoji: "🤔", feedbackText: "Hmm..." });
-    // const audio = await new Audio(sound);
-    // audio.currentTime = 0;
-    // audio.play();
+    handleEmoji({ show: true, emoji: "🤔", feedbackText: "Hmm..." });
   };
 
   // Check result of click
   const getTileId = event => {
     setCanAnswer(false);
-    // console.log(event.currentTarget.id);
     if (event.currentTarget.id === soundId) {
       handleEmoji({ emoji: "😃", feedbackText: "Good job!" });
       setScore(score + 1);
     } else {
       handleEmoji({ emoji: "😓", feedbackText: "Oops, wrong" });
     }
-    // Don't show 1/4 again
+    // Don't show 1/12 again
     if (track + 1 !== numberOfSounds) setTrack((track + 1) % numberOfSounds);
-    if (track + 1 === numberOfSounds) setShowPlayButton(false);
+    if (track + 1 === numberOfSounds) setShowAudioControls(false);
   };
-
-  // Display text on main button
-  let playButtonText;
-  if (canAnswer) {
-    playButtonText = "Replay";
-  } else if (track < 1 && !canAnswer) {
-    playButtonText = "Start";
-  } else {
-    playButtonText = "Next";
-  }
 
   // Show results
   const showResults = () => {
@@ -74,7 +59,7 @@ const Game = () => {
     setTrack(0);
     setScore(0);
     setShowEmoji({ show: false });
-    setShowPlayButton(true);
+    setShowAudioControls(true);
     setGameRunning(true);
   };
 
@@ -91,27 +76,27 @@ const Game = () => {
       {gameRunning ? (
         <>
           <h2>
-            What instrumennt does it sound like? Listen carefully and choose!
+            What instrumennt does it sound like? Listen and choose carefully!
           </h2>
-          {showPlayButton ? (
-              <audio src={sound} controls controlsList="nodownload" onPlay={play}/>
-            // <button className="btn" aria-label="start-button" onClick={play}>
-            //   {playButtonText}
-            
-            // </button>
+          {showAudioControls ? (
+            <audio
+              src={sound}
+              controls
+              controlsList="nodownload"
+              onPlay={!canAnswer ? play : null}
+            />
           ) : (
             <button
-              className="btn btn-results"
+              className="btn"
               aria-label="start-button"
               onClick={showResults}
             >
               Show Results
             </button>
           )}
-          {/* <CallToAction play={play} playButtonText={playButtonText} /> */}
           <TileList tiles={tiles} getTileId={getTileId} canAnswer={canAnswer} />
           <div className="emoji-container">
-            <Emoji showEmoji={showEmoji} />
+            {showEmoji && <Emoji showEmoji={showEmoji} />}
           </div>
           <div className="score">
             <p>

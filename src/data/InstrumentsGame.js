@@ -1,5 +1,3 @@
-// Lodash
-import shuffle from "lodash/shuffle";
 // Mp.3 sounds
 import acoustic_guitar from "../sounds/acoustic_guitar.mp3";
 import bass_guitar from "../sounds/bass_guitar.mp3";
@@ -66,19 +64,5 @@ export const GameSounds = [
   }
 ];
 
-// export const GameTiles = GameSounds.map(obj => obj.id);
-// console.log(GameTiles);
-export const GameTiles = [
-  "acoustic guitar",
-  "bass guitar",
-  "clarinet",
-  "double bass",
-  "electric guitar (clean)",
-  "electric guitar (overdrive)",
-  "harmonica",
-  "harp",
-  "piano",
-  "tenor saxophone",
-  "trumpet",
-  "violin"
-];
+// Only the IDs
+export const GameTiles = GameSounds.map(value => value.id);
