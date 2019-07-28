@@ -5,6 +5,7 @@
   --scoreField: #009eb3;
   --light: #fff;
   --dark: rgba(0, 0, 0, 0.87);
+  --rwdSize: calc(70px + 2vmin);
 }
 
 @import url("https://fonts.googleapis.com/css?family=Overpass&display=swap");
@@ -13,12 +14,11 @@
 *::before,
 *::after {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Overpass", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,19 +30,18 @@ body {
 
 .App {
   margin: auto;
-  /* width: 100%; */
   max-width: 800px;
 }
 
 #Game {
-  margin: 32px;
+  margin: 32px 0;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid black;
   background-color: var(--light);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: opacity 0.6s ease-in-out;
 }
 
@@ -61,8 +60,14 @@ audio {
   justify-content: center;
 }
 
-.intro {
-  line-height: 1.6;
+.description {
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+  .description {
+    font-size: 22px;
+  }
 }
 
 .tile {
@@ -70,18 +75,31 @@ audio {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 150px;
-  width: 150px;
+  height: var(--rwdSize);
+  width: var(--rwdSize);
   margin: 5px;
   cursor: pointer;
   border: 2px solid var(--scoreField);
   border-radius: 8px;
 }
 
+@media (min-width: 768px) {
+  .tile {
+    height: 150px;
+    width: 150px;
+  }
+}
+
 .tile p {
   z-index: 10;
-  font-size: 22px;
+  font-size: 14px;
   text-transform: capitalize;
+}
+
+@media (min-width: 768px) {
+  .tile p {
+    font-size: 22px;
+  }
 }
 
 .tile::after {
@@ -153,7 +171,7 @@ audio {
 .results-svg {
   width: 450px;
   height: auto;
-  transition: opacity 0.8s ease-in-out
+  transition: opacity 0.8s ease-in-out;
 }
 
 .results-svg-hidden {

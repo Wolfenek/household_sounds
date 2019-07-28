@@ -22,7 +22,7 @@ const Game = () => {
   const sound = sounds[track].gameSound;
   const soundId = sounds[track].id;
   const numberOfSounds = GameSounds.length;
-  
+
   // Display emoji
   const handleEmoji = ({ emoji, feedbackText }) => {
     setShowEmoji({ emoji, feedbackText });
@@ -71,11 +71,9 @@ const Game = () => {
 
   return (
     <div id="Game" className="Game-hidden">
-      {soundId}
-      Score: {score}
       {gameRunning ? (
         <>
-          <h2>
+          <h2 className="description">
             What instrumennt does it sound like? Listen and choose carefully!
           </h2>
           {showAudioControls ? (

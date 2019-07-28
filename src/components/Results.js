@@ -3,7 +3,7 @@ import { ReactComponent as Great } from "../images/great.svg";
 import { ReactComponent as Ok } from "../images/ok.svg";
 
 const Results = ({ score, numberOfSounds, startOver }) => {
-  const calculatedScore = Math.floor(numberOfSounds * 0.8);
+  const calculatedScore = Math.ceil(numberOfSounds * 0.8);
   console.log(calculatedScore);
   const classNames = "results-svg results-svg-hidden";
 
