@@ -74,7 +74,7 @@ const Game = () => {
       {gameRunning ? (
         <>
           <h2 className="description">
-            What instrumennt does it sound like? Listen and choose carefully!
+            What instrument does it sound like? Listen and choose carefully!
           </h2>
           {showAudioControls ? (
             <audio
